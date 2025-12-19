@@ -16,29 +16,26 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
-      - name: Install dependencies & build
+      - name: Install & Build React
         run: |
           npm install
           npm run build
 
-      - name: Clean old files on server
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: |
-            ${{ secrets.SSH_KEY }}
-          script: |
-            sudo rm -rf /var/www/html/*
+      - name: Create SSH key file
+        run: |
+          echo "${{ secrets.SSH_KEY }}" > key.pem
+          chmod 600 key.pem
 
-      - name: Copy build folder to EC2
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: |
-            ${{ secrets.SSH_KEY }}
-          source: "build/*"
-          target: "/var/www/html"
+      - name: Clean EC2 folder
+        run: |
+          ssh -o StrictHostKeyChecking=no -i key.pem \
+          ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+          "sudo rm -rf /var/www/html/*"
+
+      - name: Upload build to EC2
+        run: |
+          scp -o StrictHostKeyChecking=no -i key.pem -r \
+          build/* \
+          ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/html
