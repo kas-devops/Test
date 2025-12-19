@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-
-// Hero images
 import hero1 from "../assets/images/hero.jpg";
 import hero2 from "../assets/images/hero1.jpg";
 import hero3 from "../assets/images/hero4.jpg";
@@ -89,34 +87,34 @@ export default function Home() {
       </section>
 
       {/* ================= QUICK INFO ================= */}
-  <section className="bg-soft py-14 px-6 md:px-24">
-  <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="bg-soft py-14 px-6 md:px-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
 
-    {[
-      { title: "Experienced Artists", sub: "Certified professionals" },
-      { title: "Quality Products", sub: "Premium makeup brands" },
-      { title: "1000+ Clients", sub: "Happy & satisfied" },
-      { title: "Timely Service", sub: "On-time perfection" },
-    ].map((item, i) => (
-      <div
-        key={i}
-        className="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all"
-      >
-        <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl font-bold">
-          {i + 1}
+          {[
+            { title: "Experienced Artists", sub: "Certified professionals" },
+            { title: "Quality Products", sub: "Premium makeup brands" },
+            { title: "1000+ Clients", sub: "Happy & satisfied" },
+            { title: "Timely Service", sub: "On-time perfection" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all"
+            >
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl font-bold">
+                {i + 1}
+              </div>
+
+              <h3 className="font-heading text-lg mb-1">
+                {item.title}
+              </h3>
+              <p className="text-sm text-gray-500">
+                {item.sub}
+              </p>
+            </div>
+          ))}
+
         </div>
-
-        <h3 className="font-heading text-lg mb-1">
-          {item.title}
-        </h3>
-        <p className="text-sm text-gray-500">
-          {item.sub}
-        </p>
-      </div>
-    ))}
-
-  </div>
-</section>
+      </section>
 
       {/* ================= ABOUT US ================= */}
       <section className="py-16 px-6 md:px-24 bg-white">
@@ -150,112 +148,107 @@ export default function Home() {
       </section>
 
       {/* ================= WHY CHOOSE US ================= */}
-     <section className="py-16 px-6 md:px-24">
-  <h2 className="font-heading text-3xl md:text-4xl text-center mb-10">
-    Why Choose Us
-  </h2>
+      <section className="py-16 px-6 md:px-24">
+        <h2 className="font-heading text-3xl md:text-4xl text-center mb-10">
+          Why Choose Us
+        </h2>
 
-  <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    {highlights.map((item, i) => (
-      <div
-        key={i}
-        className="group bg-white rounded-2xl shadow-sm overflow-hidden
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {highlights.map((item, i) => (
+            <div
+              key={i}
+              className="group bg-white rounded-2xl shadow-sm overflow-hidden
                    hover:shadow-2xl transition-all duration-500
                    hover:-translate-y-2"
-      >
+            >
 
-        {/* Image */}
-        <div className="overflow-hidden">
-          <img
-            src={item.img}
-            className="h-40 w-full object-cover
+              {/* Image */}
+              <div className="overflow-hidden">
+                <img
+                  src={item.img}
+                  className="h-40 w-full object-cover
                        transition-transform duration-700
                        group-hover:scale-110"
-          />
-        </div>
+                />
+              </div>
 
-        {/* Content */}
-        <div className="p-5 text-center">
-          <h3
-            className="font-heading text-lg mb-2
+              {/* Content */}
+              <div className="p-5 text-center">
+                <h3
+                  className="font-heading text-lg mb-2
                        transition-all duration-500
                        group-hover:text-primary"
-          >
-            {item.title}
-          </h3>
+                >
+                  {item.title}
+                </h3>
 
-          <p
-            className="text-sm text-gray-600
+                <p
+                  className="text-sm text-gray-600
                        transition-all duration-500
                        group-hover:opacity-90"
-          >
-            {item.text}
-          </p>
-        </div>
+                >
+                  {item.text}
+                </p>
+              </div>
 
-        {/* Bottom Accent Line */}
-        <div
-          className="h-1 w-0 bg-primary mx-auto
+              {/* Bottom Accent Line */}
+              <div
+                className="h-1 w-0 bg-primary mx-auto
                      transition-all duration-500
                      group-hover:w-full"
-        />
-      </div>
-    ))}
-  </div>
-</section>
-
-
-
-{/* ================= SMALL FEATURES ================= */}
-<section className="py-16 px-6 md:px-24 bg-soft">
-  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-
-    {[
-      {
-        img: hero1,
-        title: "HD Makeup",
-        desc: "Flawless HD makeup for every occasion, using premium products and professional techniques."
-      },
-      {
-        img: hero2,
-        title: "Airbrush Finish",
-        desc: "Smooth airbrush look that lasts long and enhances your natural beauty effortlessly."
-      },
-      {
-        img: hero3,
-        title: "Long Lasting",
-        desc: "Makeup that stays perfect all day, ensuring you look flawless from morning to night."
-      },
-      {
-        img: hero1,
-        title: "Skin Friendly",
-        desc: "Gentle products suitable for all skin types, safe and hypoallergenic."
-      }
-    ].map((item, i) => (
-      <div
-        key={i}
-        className="relative rounded-xl overflow-hidden shadow-lg group h-72 md:h-96"
-      >
-        {/* Background Image */}
-        <img
-          src={item.img}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-6">
-          <div className="text-center text-white">
-            <h3 className="font-heading text-2xl md:text-3xl mb-2">{item.title}</h3>
-            <p className="text-sm md:text-base">{item.desc}</p>
-          </div>
+              />
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
+      </section>
+      {/* ================= SMALL FEATURES ================= */}
+      <section className="py-16 px-6 md:px-24 bg-soft">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
 
-  </div>
-</section>
+          {[
+            {
+              img: hero1,
+              title: "HD Makeup",
+              desc: "Flawless HD makeup for every occasion, using premium products and professional techniques."
+            },
+            {
+              img: hero2,
+              title: "Airbrush Finish",
+              desc: "Smooth airbrush look that lasts long and enhances your natural beauty effortlessly."
+            },
+            {
+              img: hero3,
+              title: "Long Lasting",
+              desc: "Makeup that stays perfect all day, ensuring you look flawless from morning to night."
+            },
+            {
+              img: hero1,
+              title: "Skin Friendly",
+              desc: "Gentle products suitable for all skin types, safe and hypoallergenic."
+            }
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="relative rounded-xl overflow-hidden shadow-lg group h-72 md:h-96"
+            >
+              {/* Background Image */}
+              <img
+                src={item.img}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
 
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-6">
+                <div className="text-center text-white">
+                  <h3 className="font-heading text-2xl md:text-3xl mb-2">{item.title}</h3>
+                  <p className="text-sm md:text-base">{item.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
 
+        </div>
+      </section>
       {/* ================= SERVICES ================= */}
       <section className="py-16 px-6 md:px-24 bg-soft">
         <h2 className="font-heading text-3xl md:text-4xl text-center mb-10">
@@ -278,32 +271,32 @@ export default function Home() {
           ))}
         </div>
       </section>
-{/* ================= MINI SERVICES ================= */}
-<section className="py-16 px-6 md:px-24">
-  <h2 className="font-heading text-3xl text-center mb-8">
-    More Services
-  </h2>
+      {/* ================= MINI SERVICES ================= */}
+      <section className="py-16 px-6 md:px-24">
+        <h2 className="font-heading text-3xl text-center mb-8">
+          More Services
+        </h2>
 
-  <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-    {[
-      "Bridal Makeup",
-      "Party Makeup",
-      "Engagement Look",
-      "Reception Makeup",
-      "Hair Styling",
-      "Saree Draping",
-      "Photoshoot Makeup",
-      "Natural Look"
-    ].map((service, i) => (
-      <div
-        key={i}
-        className="bg-white rounded-xl shadow-sm p-5 text-center hover:shadow-lg transition"
-      >
-        <h3 className="font-heading text-sm">{service}</h3>
-      </div>
-    ))}
-  </div>
-</section>
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            "Bridal Makeup",
+            "Party Makeup",
+            "Engagement Look",
+            "Reception Makeup",
+            "Hair Styling",
+            "Saree Draping",
+            "Photoshoot Makeup",
+            "Natural Look"
+          ].map((service, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-xl shadow-sm p-5 text-center hover:shadow-lg transition"
+            >
+              <h3 className="font-heading text-sm">{service}</h3>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ================= PACKAGES ================= */}
       <section className="py-16 px-6 md:px-24 bg-soft">
@@ -358,23 +351,23 @@ export default function Home() {
         </div>
       </section>
       {/* ================= STATS ================= */}
-<section className="py-14 px-6 md:px-24 bg-primary text-white">
-  <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <section className="py-14 px-6 md:px-24 bg-primary text-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
 
-    {[
-      { num: "1000+", label: "Happy Clients" },
-      { num: "8+", label: "Years Experience" },
-      { num: "50+", label: "Bridal Events" },
-      { num: "100%", label: "Satisfaction" },
-    ].map((item, i) => (
-      <div key={i}>
-        <h3 className="text-3xl font-bold">{item.num}</h3>
-        <p className="text-sm opacity-90">{item.label}</p>
-      </div>
-    ))}
+          {[
+            { num: "1000+", label: "Happy Clients" },
+            { num: "8+", label: "Years Experience" },
+            { num: "50+", label: "Bridal Events" },
+            { num: "100%", label: "Satisfaction" },
+          ].map((item, i) => (
+            <div key={i}>
+              <h3 className="text-3xl font-bold">{item.num}</h3>
+              <p className="text-sm opacity-90">{item.label}</p>
+            </div>
+          ))}
 
-  </div>
-</section>
+        </div>
+      </section>
 
       {/* ================= PROCESS ================= */}
       <section className="py-16 px-6 md:px-24 bg-soft">
