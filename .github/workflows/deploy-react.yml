@@ -10,32 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install & Build React
+      - name: Build React
         run: |
           npm install
           npm run build
 
-      - name: Create SSH key file
+      - name: Write SSH key
         run: |
           echo "${{ secrets.SSH_KEY }}" > key.pem
           chmod 600 key.pem
 
-      - name: Clean EC2 folder
+      - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem \
           ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
           "sudo rm -rf /var/www/html/*"
 
-      - name: Upload build to EC2
-        run: |
           scp -o StrictHostKeyChecking=no -i key.pem -r \
           build/* \
           ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/html
