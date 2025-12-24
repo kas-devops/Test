@@ -1,4 +1,4 @@
-name: Deploy React App to EC2
+name: Deploy Vite React App to EC2
 
 on:
   push:
@@ -21,12 +21,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build React app
+      - name: Build Vite app
         run: npm run build
 
       - name: Verify build output
         run: |
-          test -f build/index.html
+          test -f dist/index.html
 
       - name: Setup SSH Agent
         uses: webfactory/ssh-agent@v0.9.0
@@ -37,9 +37,9 @@ jobs:
         run: |
           ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Deploy build to EC2
+      - name: Deploy to EC2
         run: |
-          rsync -avz --delete build/ \
+          rsync -avz --delete dist/ \
           ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/html/
 
       - name: Fix permissions
