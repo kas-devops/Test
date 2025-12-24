@@ -44,7 +44,9 @@ jobs:
 
       # 8️⃣ Deploy to EC2 via rsync
       - name: Deploy to EC2
-        run: rsync -avz --delete dist/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/html/
+        run: |
+            rsync -avz --delete dist/ "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/html/"
+
 
       # 9️⃣ Fix permissions on EC2
       - name: Fix permissions
