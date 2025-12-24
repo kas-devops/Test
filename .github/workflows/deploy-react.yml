@@ -1,29 +1,39 @@
 name: Deploy React App to EC2
+
 on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: Build React
+
+      - name: Install & Build React
         run: |
-          npm install
+          npm ci
           npm run build
+
       - name: Write SSH key
         run: |
           echo "${{ secrets.SSH_KEY }}" > key.pem
           chmod 600 key.pem
-      - name: Deploy to EC2
+
+      - name: Prepare server
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem \
           ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
-          "sudo rm -rf /var/www/html/*"
+          "sudo rm -rf /var/www/html/* && sudo chown -R ${{ secrets.SERVER_USER }}:${{ secrets.SERVER_USER }} /var/www/html"
+
+      - name: Deploy to EC2
+        run: |
           scp -o StrictHostKeyChecking=no -i key.pem -r \
           build/* \
           ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/html
